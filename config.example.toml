@@ -1,0 +1,53 @@
+# Copy this file to config.toml and edit as needed.
+# config.toml is gitignored, so your edits never get committed.
+
+[audio]
+backend = "hybrid"          # "hybrid" | "loopback" | "session_meter"
+device_name = ""             # substring match on a WASAPI loopback device; "" = default speakers
+sample_rate = 0               # 0 = use the device's default sample rate
+frame_size = 1024             # PortAudio callback buffer size, in frames
+queue_frames = 64             # bounded queue depth between the audio callback and the detector
+process_name = "Wow.exe"     # process whose audio session pycaw meters for the hybrid gate
+session_gate_peak = 0.05      # minimum pycaw peak (0..1) treated as "the game made sound"
+session_poll_hz = 20           # how often the session meter thread polls GetPeakValue()
+
+[detection]
+band_low_hz = 500.0             # lower edge of the splash frequency band, in Hz
+band_high_hz = 4000.0           # upper edge of the splash frequency band, in Hz
+window_size = 2048               # FFT analysis window size, in samples (power of two)
+hop_size = 1024                   # samples advanced between analysis frames (power of two)
+calibration_seconds = 3.0         # ambient audio collected before the baseline is primed
+trigger_margin_db = 12.0          # dB above baseline required to consider a frame a candidate
+onset_db = 6.0                     # required rise over the recent lookback to call it an onset
+onset_lookback_frames = 4          # how many recent frames the onset flux compares against
+min_event_frames = 2                # consecutive qualifying frames required to fire an event
+refractory_s = 3.0                   # minimum time between two fired events
+baseline_alpha = 0.02                 # EWMA smoothing factor for the ambient baseline
+baseline_freeze_margin_db = 6.0       # baseline stops updating this many dB above itself
+
+[input]
+cast_key = "1"          # keybind used to cast the fishing spell/ability
+loot_key = "3"           # keybind used to interact with the bobber / loot
+key_hold_ms = 60          # how long a key is held down, in milliseconds
+loot_delay_ms = 120        # delay before the loot key press, in milliseconds
+cast_to_arm_s = 1.5         # time after casting before splash detection starts listening
+post_loot_s = 1.2            # pause after looting before the next cast
+recast_delay_s = 0.8          # pause between returning to idle and the next cast
+jitter_ms = 80                 # random extra delay added to presses, in milliseconds
+rng_seed = 0                    # 0 = nondeterministic; tests set a fixed seed
+
+[bot]
+max_wait_s = 25.0                            # seconds to wait for a bite before giving up
+require_focus = true                          # only send input while the game window is focused
+window_title_contains = "World of Warcraft"    # substring the foreground window title must contain
+max_casts = 0                                    # stop after this many casts; 0 = unlimited
+stop_after_minutes = 0                            # stop after this many minutes; 0 = unlimited
+
+[hotkeys]
+pause = "<f9>"    # pynput GlobalHotKeys spec to pause/resume the bot
+stop = "<f10>"     # pynput GlobalHotKeys spec to stop the bot
+
+[ui]
+refresh_hz = 8       # console status panel refresh rate, in Hz
+log_file = ""         # optional path to also write logs to a file
+color = true           # enable rich color output

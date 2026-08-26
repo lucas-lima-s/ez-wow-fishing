@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.ruff_cache/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+.tmp/
+config.toml
+*.wav
+*.log
+.idea/
+.vscode/
+.history/
+.env

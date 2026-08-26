@@ -1,0 +1,41 @@
+[project]
+name = "wow-ez-fishing"
+version = "1.0.0"
+description = "Sound-driven auto-fishing bot for World of Warcraft using WASAPI loopback capture and FFT splash detection."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Lucas de Lima" }]
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26",
+  "rich>=13.7",
+  "psutil>=5.9",
+  "PyAudioWPatch>=0.2.12.8; sys_platform == 'win32'",
+  "pycaw>=20240210; sys_platform == 'win32'",
+  "comtypes>=1.4; sys_platform == 'win32'",
+  "pydirectinput-rgx>=2.1.3; sys_platform == 'win32'",
+  "pynput>=1.7.6; sys_platform == 'win32'",
+]
+
+[project.scripts]
+wow-ez-fishing = "wow_ez_fishing.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "pillow>=10.4"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wow_ez_fishing"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
