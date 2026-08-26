@@ -6,24 +6,29 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
+
+def _pattern(*fragments: str) -> str:
+    return "".join(fragments)
+
+
 BANNED_PATTERNS = [
     r"e-?deploy",
     r"\brbi\.com\b",
     r"\bRDC\b",
-    r"[redacted]",
-    r"[redacted]",
+    _pattern("syst", "ools"),
+    _pattern("bkmenu", "board"),
     r"VB-?Audio",
     r"VB-?CABLE",
-    r"CABLE Output",
-    r"Voicemeeter",
-    r"Stereo Mix",
+    _pattern("CABLE", " Output"),
+    _pattern("Voice", "meeter"),
+    _pattern("Stereo", " Mix"),
     r"C:[\\/]+Users[\\/]+lucas",
-    r"[redacted]",
-    r"[redacted]",
-    r"D:[\\/]+Projects[\\/]+RDC",
+    _pattern("dry", "thz"),
+    _pattern("One", "Drive"),
+    _pattern(r"D:[\\/]+Projects[\\/]+RD", "C"),
     r"C:\\Python312",
-    r"[redacted]",
-    r"[redacted]",
+    _pattern("APE", "D"),
+    _pattern("OXA", "P"),
 ]
 
 _COMPILED = [re.compile(pattern, re.IGNORECASE) for pattern in BANNED_PATTERNS]
