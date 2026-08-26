@@ -58,7 +58,7 @@ class FakePyAudio:
         for device in self._devices:
             if device["index"] == index:
                 return device
-        raise ValueError("no such device")
+        raise OSError(-9996, "Invalid device info")
 
     def get_loopback_device_info_generator(self):
         self.loopback_generator_calls += 1
@@ -96,6 +96,15 @@ def test_resolve_loopback_device_raises_when_nothing_matches() -> None:
     pa = FakePyAudio(list(DEVICES))
     with pytest.raises(AudioDeviceError):
         resolve_loopback_device(pa, "nonexistent")
+
+
+@pytest.mark.windows_only
+def test_resolve_loopback_device_raises_when_no_default_output_device() -> None:
+    from wow_ez_fishing.audio.devices import resolve_loopback_device
+
+    pa = FakePyAudio(list(DEVICES), default_output_index=-1)
+    with pytest.raises(AudioDeviceError):
+        resolve_loopback_device(pa, "")
 
 
 @pytest.mark.windows_only

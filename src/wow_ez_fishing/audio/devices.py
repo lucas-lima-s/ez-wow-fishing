@@ -26,7 +26,10 @@ def resolve_loopback_device(p: Any, device_name: str) -> dict:
             f"no loopback device matches '{device_name}'. Available devices: {available}"
         )
 
-    default_speakers = p.get_device_info_by_index(wasapi_info["defaultOutputDevice"])
+    try:
+        default_speakers = p.get_device_info_by_index(wasapi_info["defaultOutputDevice"])
+    except OSError as exc:
+        raise AudioDeviceError("no default output device is available on this system") from exc
     if not default_speakers.get("isLoopbackDevice"):
         for loopback in p.get_loopback_device_info_generator():
             if default_speakers["name"] in loopback["name"]:
