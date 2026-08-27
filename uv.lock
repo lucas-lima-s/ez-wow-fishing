@@ -485,7 +485,7 @@ wheels = [
 ]
 
 [[package]]
-name = "wow-ez-fishing"
+name = "ez-wow-fishing"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [

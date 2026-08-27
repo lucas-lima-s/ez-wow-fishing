@@ -54,7 +54,7 @@ class ConsoleUI:
             f"pause={bot.cfg.hotkeys.pause} stop={bot.cfg.hotkeys.stop}",
         )
         events_text = "\n".join(self._events) or "(none yet)"
-        return Panel.fit(table, title="wow-ez-fishing", subtitle=events_text)
+        return Panel.fit(table, title="ez-wow-fishing", subtitle=events_text)
 
     def start(self) -> None:
         self._live = Live(

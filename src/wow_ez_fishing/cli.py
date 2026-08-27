@@ -32,7 +32,7 @@ def _normalize_argv(argv: list[str]) -> list[str]:
 
 
 def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="wow-ez-fishing")
+    parser = argparse.ArgumentParser(prog="ez-wow-fishing")
     subparsers = parser.add_subparsers(dest="command")
 
     run_p = subparsers.add_parser("run", help="run the fishing bot")

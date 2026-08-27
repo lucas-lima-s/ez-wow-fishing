@@ -45,7 +45,7 @@ check), because the whole capture path is non-blocking now.
 ## Tuning from `calibrate` output
 
 ```bash
-uv run wow-ez-fishing calibrate --seconds 10
+uv run ez-wow-fishing calibrate --seconds 10
 ```
 
 prints the measured ambient baseline in dB and a per-octave energy table. Use the table

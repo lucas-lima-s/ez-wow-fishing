@@ -1,6 +1,6 @@
 # Audio setup (driverless)
 
-wow-ez-fishing captures system audio through WASAPI loopback, a feature built into
+ez-wow-fishing captures system audio through WASAPI loopback, a feature built into
 Windows 10 and 11. It needs **no driver and no special recording device at all** — the
 capture path is entirely pip-installable (`PyAudioWPatch`, a PortAudio fork with WASAPI
 loopback support).
@@ -8,7 +8,7 @@ loopback support).
 ## Verifying loopback works on your machine
 
 ```bash
-uv run wow-ez-fishing devices
+uv run ez-wow-fishing devices
 ```
 
 This lists every WASAPI loopback-capable device Windows exposes, plus whether a
@@ -31,7 +31,7 @@ pin capture to a specific one regardless of which is currently default, set
 device_name = "Realtek"
 ```
 
-Run `wow-ez-fishing devices` to see the exact names Windows reports.
+Run `ez-wow-fishing devices` to see the exact names Windows reports.
 
 ## Switching outputs mid-session
 

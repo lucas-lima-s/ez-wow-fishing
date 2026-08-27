@@ -23,7 +23,7 @@ from wow_ez_fishing.input import Actions, DryRunKeyboard
 from wow_ez_fishing.window import FocusGuard
 
 CAPTION = "Synthetic demo - audio from a generated WAV, no live game"
-SVG_TITLE = "wow-ez-fishing - synthetic demo (mock)"
+SVG_TITLE = "ez-wow-fishing - synthetic demo (mock)"
 
 
 class NullMeter:

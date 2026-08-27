@@ -60,7 +60,7 @@ jobs:
         run: uv run pytest -q
 
       - name: Doctor (no audio endpoint on the runner)
-        run: uv run wow-ez-fishing doctor --no-fail-on-device
+        run: uv run ez-wow-fishing doctor --no-fail-on-device
 
       - name: Import smoke test
         run: uv run python -c "import wow_ez_fishing.audio.loopback"

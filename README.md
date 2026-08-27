@@ -1,4 +1,4 @@
-# wow-ez-fishing
+# ez-wow-fishing
 
 A driverless, sound-driven auto-fishing bot for World of Warcraft. It listens to your
 system's own audio output through WASAPI loopback capture, picks out the fishing-bobber
@@ -31,7 +31,7 @@ Use it at your own risk, on your own account, understanding the consequences.
 
 ```bash
 uv sync
-uv run wow-ez-fishing doctor
+uv run ez-wow-fishing doctor
 ```
 
 `doctor` checks your Python version, WASAPI availability, loopback device resolution,
@@ -41,11 +41,11 @@ correctly. On Windows it also warns if the bot is not running elevated while the
 ## Quickstart
 
 ```bash
-uv run wow-ez-fishing calibrate --seconds 5
+uv run ez-wow-fishing calibrate --seconds 5
 cp config.example.toml config.toml
 # edit config.toml with the band and margin calibrate suggested
-uv run wow-ez-fishing run --dry-run
-uv run wow-ez-fishing run
+uv run ez-wow-fishing run --dry-run
+uv run ez-wow-fishing run
 ```
 
 `--dry-run` runs the full pipeline (capture, detection, state machine) but prints the
@@ -134,7 +134,7 @@ polls `pycaw` on its own background thread and only ever hands over the max rece
 
 ## Troubleshooting
 
-- **No loopback device found** — run `wow-ez-fishing devices`. On Windows 10/11, WASAPI
+- **No loopback device found** — run `ez-wow-fishing devices`. On Windows 10/11, WASAPI
   loopback works on the default output device with no driver; see
   [docs/audio-setup.md](docs/audio-setup.md).
 - **Keys are ignored by the game** — WoW may be running elevated. Run the bot elevated
